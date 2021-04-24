@@ -7,6 +7,8 @@ class Play extends Phaser.Scene {
     }
 
     preload() {
+        this.load.image('dino', './assets/trex_001.png');
+        this.load.image('comet', './assets/comets-1.png');
 
     }
 
@@ -31,7 +33,7 @@ class Play extends Phaser.Scene {
 
     update() {
         for(let c = 0; c < this.comets.length; c++) {
-            if(checkCollision(this.comets[c])) {
+            if(this.checkCollision(this.comets[c])) {
                 console.log("Collided");
             }
         }
