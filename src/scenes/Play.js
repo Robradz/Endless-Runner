@@ -49,8 +49,7 @@ class Play extends Phaser.Scene {
                 comet
             );
 
-            cometTrail.rotation = 
-                Math.atan(comet.movementSpeedY, comet.movementSpeedX);
+            console.log(comet, cometTrail);
             this.cometTrails.push(cometTrail);
             this.comets.push(comet);
         }
@@ -73,12 +72,12 @@ class Play extends Phaser.Scene {
 
     checkCollision(comet) {
         if (this.distanceBetween(this.dino.x, this.dino.y 
-            + this.dino.height/4, comet.x, comet.y) < 
+            + this.dino.height/8, comet.x, comet.y) < 
             this.dino.collisionRadius + comet.collisionRadius) {
             return true;
         }
         if (this.distanceBetween(this.dino.x, this.dino.y 
-            - this.dino.height/4, comet.x, comet.y) < 
+            - this.dino.height/8, comet.x, comet.y) < 
             this.dino.collisionRadius + comet.collisionRadius) {
             return true;
         }
