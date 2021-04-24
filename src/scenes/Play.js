@@ -8,11 +8,18 @@ class Play extends Phaser.Scene {
 
     preload() {
         this.load.image('dino', './assets/trex_001.png');
-        this.load.image('comet', './assets/comets-1.png');
+        this.load.image('dinoDown', './assets/trex_down_001.png');
+        this.load.image('dinoUp', './assets/trex_up_001.png');
+        this.load.image('cometDiag', './assets/comets-1.png');
+        this.load.image('cometHorz', './assets/Flame-1.png');
 
     }
 
     create() {
+        keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         this.dino = new Dino(
             this,
             this.sideBuffer,
@@ -25,7 +32,7 @@ class Play extends Phaser.Scene {
                 this,
                 Math.random() * game.config.width,
                 Math.random() * game.config.height,
-                'comet'
+                'comet',
             );
             this.comets.push(comet);
         }
@@ -37,6 +44,7 @@ class Play extends Phaser.Scene {
                 console.log("Collided");
             }
         }
+        this.dino.update();
     }
 
     distanceBetween(x1, y1, x2, y2) {

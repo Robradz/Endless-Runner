@@ -5,4 +5,22 @@ class Dino extends Phaser.GameObjects.Sprite {
         this.movementSpeed = 2;
         this.collisionRadius = this.height / 2;
     }
+    update(){
+        if(keyS.isDown) {
+            this.y += this.movementSpeed;
+            this.setTexture('dinoDown');
+        }
+        if(keyW.isDown) {
+            this.y -= this.movementSpeed;
+            this.setTexture('dinoUp');
+        }
+        if(keyA.isDown) {
+            this.x -= this.movementSpeed;
+            this.setTexture('dinoDown');
+        }
+        if(keyD.isDown) {
+            this.x += this.movementSpeed;
+            this.setTexture('dino');
+        }
+    }
 }
