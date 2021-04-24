@@ -2,6 +2,7 @@ class Play extends Phaser.Scene {
     constructor() {
         super("playScene");
         this.comets = [];
+        this.cometTrails = [];
         this.numComets = 3;
         this.sideBuffer = 50;
     }
@@ -11,7 +12,8 @@ class Play extends Phaser.Scene {
         this.load.image('dinoDown', './assets/trex_down_001.png');
         this.load.image('dinoUp', './assets/trex_up_001.png');
         this.load.image('cometDiag', './assets/comets-1.png');
-        this.load.image('cometHorz', './assets/Flame-1.png');
+        this.load.image('comet', './assets/Rock.png');
+        this.load.image('flame', './assets/Flame-1.png');
 
     }
 
@@ -27,13 +29,25 @@ class Play extends Phaser.Scene {
             'dino'
         );
 
+
+        //TODO: Randomize spawning
         for (let i = 0; i < this.numComets; i++) {
             let comet = new Comet(
                 this,
-                Math.random() * game.config.width,
-                Math.random() * game.config.height,
+                game.config.width / 2,
+                game.config.height / 2,
                 'comet',
             );
+
+            let cometTrail = new CometTrail(
+                this,
+                comet.x,
+                comet.y,
+                'flame'
+            );
+
+            cometTrail.linkComet(comet);
+            this.cometTrails.push(cometTrail);
             this.comets.push(comet);
         }
     }
@@ -41,6 +55,7 @@ class Play extends Phaser.Scene {
     update() {
         for(let c = 0; c < this.comets.length; c++) {
             this.comets[c].update();
+            this.cometTrails[c].update();
             if(this.checkCollision(this.comets[c])) {
                 console.log("Collided");
             }

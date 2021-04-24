@@ -24,8 +24,8 @@ class Menu extends Phaser.Scene {
 
         // Temporary Menu
         //Show Menu Text
-        this.add.text(game.config.width/2, game.config.height/2, 'Dodgy Dino', 
-            menuConfig).setOrigin(0.5);
+        this.add.text(game.config.width/2, game.config.height/2 - 50, 
+            'Dodgy Dino', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width / 2, game.config.height / 2, 
             'Press W to start. Move with WASD', menuConfig).setOrigin(0.5);
         
@@ -34,10 +34,6 @@ class Menu extends Phaser.Scene {
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(keyW)) {
-            // easy mode
-            game.settings = {
-                gameTimer: 60000
-            }
             this.scene.start('playScene');
         }
     }
