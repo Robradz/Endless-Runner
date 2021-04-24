@@ -5,6 +5,14 @@ class Comet extends Phaser.GameObjects.Sprite {
         this.movementSpeed = 2;
         this.collisionRadius = this.height / 2;
         this.isHorizontal = Math.floor(Math.random() * 2);
-        this.setTexture(this.isHorizontal ? 'cometDiag' : 'cometHorz');
+        this.setTexture(this.isHorizontal ? 'cometHorz' : 'cometDiag');
+    }
+    update(){
+        if(this.isHorizontal){
+            this.x -= this.movementSpeed;
+        }else{
+            this.x -= this.movementSpeed/2;
+            this.y += this.movementSpeed/2;
+        }
     }
 }

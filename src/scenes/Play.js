@@ -40,6 +40,7 @@ class Play extends Phaser.Scene {
 
     update() {
         for(let c = 0; c < this.comets.length; c++) {
+            this.comets[c].update();
             if(this.checkCollision(this.comets[c])) {
                 console.log("Collided");
             }
