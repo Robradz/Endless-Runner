@@ -4,7 +4,7 @@ class Play extends Phaser.Scene {
         super("playScene");
         this.comets = [];
         this.cometTrails = [];
-        this.numComets = 4;
+        this.numComets = 3;
         this.sideBuffer = 50;
         this.cometDelay = 4;
         this.maxComets = 16;
@@ -22,10 +22,6 @@ class Play extends Phaser.Scene {
         this.load.image('cometDiag', './assets/comets-1.png');
         this.load.image('comet', './assets/Rock.png');
         this.load.image('flame', './assets/Flame-1.png');
-
-        
-
-        
     }
 
     create() {
@@ -115,13 +111,11 @@ class Play extends Phaser.Scene {
             this.dino.update();
 
             this.cometTimer(this.timer.getElapsedSeconds());
+
+            this.background1.tilePositionX += 1;
+            this.background2.tilePositionX += 2;
+            this.background3.tilePositionX += 3;
         }
-
-
-        this.background1.tilePositionX += 1;
-        this.background2.tilePositionX += 2;
-        this.background3.tilePositionX += 3;
-        
     }
 
     gameOver() {
