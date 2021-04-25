@@ -7,6 +7,7 @@ class Play extends Phaser.Scene {
         this.numComets = 4;
         this.sideBuffer = 50;
         this.cometDelay = 4;
+        this.maxComets = 16;
     }
 
     preload() {
@@ -47,7 +48,7 @@ class Play extends Phaser.Scene {
     }
 
     createComet() {
-        if (this.comets.length > 15) { 
+        if (this.comets.length >= this.maxComets) { 
             console.warn("Comets reached max"); return; }
         let comet = new Comet(
             this,
