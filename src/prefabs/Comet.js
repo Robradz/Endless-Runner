@@ -12,6 +12,7 @@ class Comet extends Phaser.GameObjects.Sprite {
         this.depth = -1;
         this.isPlaying = true;
     }
+    
 
     update(){
         if (!this.isPlaying) { return };
