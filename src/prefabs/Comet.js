@@ -8,16 +8,13 @@ class Comet extends Phaser.GameObjects.Sprite {
         this.movementSpeedY;
         this.collisionRadius = 0;
         this.isHorizontal = Math.floor(Math.random() * 2);
-        this.setLocation();
+        this.reset();
         this.depth = -1;
-    }
-
-    setLocation() {
-        this.x = game.config.width / 2;
-        this.y = game.config.height / 2;
+        this.isPlaying = true;
     }
 
     update(){
+        if (!this.isPlaying) { return };
         if(this.isHorizontal){
             this.movementSpeedX = this.baseMovementSpeed * -1;
             this.movementSpeedY = 0;
@@ -39,9 +36,10 @@ class Comet extends Phaser.GameObjects.Sprite {
             this.x = game.config.width + 50;
             this.y = Math.random() * game.config.height;
         } else {
-            this.x = Math.random() * game.config.width / 2 + game.config.width / 2;
+            this.x = Math.random() *  game.config.width;
             this.y = -50;
         }
         this.baseMovementSpeed = Math.random() * 3 + 3;
+        this.isHorizontal = Math.floor(Math.random() * 2);
     }
 }

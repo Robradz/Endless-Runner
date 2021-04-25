@@ -4,8 +4,9 @@ class Play extends Phaser.Scene {
         super("playScene");
         this.comets = [];
         this.cometTrails = [];
-        this.numComets = 3;
+        this.numComets = 4;
         this.sideBuffer = 50;
+        this.cometDelay = 4;
     }
 
     preload() {
@@ -32,27 +33,40 @@ class Play extends Phaser.Scene {
 
         //TODO: Randomize spawning
         for (let i = 0; i < this.numComets; i++) {
-            let comet = new Comet(
-                this,
-                game.config.width / 2,
-                game.config.height / 2,
-                'comet',
-                0
-            );
-
-            let cometTrail = new CometTrail(
-                this,
-                comet.x,
-                comet.y,
-                'flame',
-                0,
-                comet
-            );
-
-            console.log(comet, cometTrail);
-            this.cometTrails.push(cometTrail);
-            this.comets.push(comet);
+            this.createComet();
         }
+
+        this.timer = this.time.addEvent({
+            delay: Infinity,
+            callback: this.createComet(),
+            callbackScope: this,
+            loop: false
+        });
+
+    }
+
+    createComet() {
+        if (this.comets.length > 15) { return; }
+        let comet = new Comet(
+            this,
+            game.config.width + 50,
+            Math.random() * game.config.height,
+            'comet',
+            0
+        );
+
+        let cometTrail = new CometTrail(
+            this,
+            comet.x,
+            comet.y,
+            'flame',
+            0,
+            comet
+        );
+
+        this.cometTrails.push(cometTrail);
+        this.comets.push(comet);
+        console.log(this.comets.length);
     }
 
     update() {
@@ -60,10 +74,30 @@ class Play extends Phaser.Scene {
             this.comets[c].update();
             this.cometTrails[c].update();
             if(this.checkCollision(this.comets[c])) {
-                console.log("Collided");
+                this.gameOver();
             }
         }
         this.dino.update();
+
+        console.log(this.timer.getElapsedSeconds());
+        this.cometTimer(this.timer.getElapsedSeconds());
+    }
+
+    gameOver() {
+        this.dino.movementSpeed = 0;
+        for(let c = 0; c < this.comets.length; c++) {
+            this.comets[c].isPlaying = false;
+            this.cometTrails[c].isPlaying = false;
+            this.comets[c].movementSpeedX = 0;
+            this.comets[c].movementSpeedY = 0;
+        }
+    }
+
+    cometTimer(timerr){
+        console.log(Math.floor(timerr), this.comets.length);
+        if (Math.floor(timerr)/this.cometDelay > this.comets.length) {
+            this.createComet();
+        }
     }
 
     distanceBetween(x1, y1, x2, y2) {

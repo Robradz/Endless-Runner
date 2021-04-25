@@ -5,6 +5,7 @@ class Dino extends Phaser.GameObjects.Sprite {
         scene.add.existing(this);
         this.movementSpeed = 4;
         this.collisionRadius = this.height / 2;
+        this.side_buffer = this.width/2;
     }
     update(){
         if(keyS.isDown) {
@@ -22,6 +23,23 @@ class Dino extends Phaser.GameObjects.Sprite {
         if(keyD.isDown) {
             this.x += this.movementSpeed;
             this.setTexture('dino');
+        }
+
+        this.checkBoundaries();
+    }
+
+    checkBoundaries() {
+        if (this.x < this.side_buffer) {
+            this.x = this.side_buffer;
+        }
+        if (this.x > game.config.width - this.side_buffer) {
+            this.x = game.config.width - this.side_buffer
+        }
+        if (this.y < this.side_buffer) {
+            this.y = this.side_buffer;
+        }
+        if (this.y > game.config.height - this.side_buffer) {
+            this.y = game.config.height- this.side_buffer
         }
     }
 }
