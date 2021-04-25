@@ -1,3 +1,4 @@
+"use strict";
 class Play extends Phaser.Scene {
     constructor() {
         super("playScene");
@@ -14,7 +15,6 @@ class Play extends Phaser.Scene {
         this.load.image('cometDiag', './assets/comets-1.png');
         this.load.image('comet', './assets/Rock.png');
         this.load.image('flame', './assets/Flame-1.png');
-
     }
 
     create() {
@@ -37,16 +37,20 @@ class Play extends Phaser.Scene {
                 game.config.width / 2,
                 game.config.height / 2,
                 'comet',
+                0
             );
 
             let cometTrail = new CometTrail(
                 this,
                 comet.x,
                 comet.y,
-                'flame'
+                'flame',
+                0,
+                comet
             );
 
-            cometTrail.linkComet(comet);
+            cometTrail.rotation = 
+                Math.atan(comet.movementSpeedY, comet.movementSpeedX);
             this.cometTrails.push(cometTrail);
             this.comets.push(comet);
         }
