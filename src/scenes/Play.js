@@ -23,6 +23,7 @@ class Play extends Phaser.Scene {
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
         this.dino = new Dino(
             this,
             this.sideBuffer,
@@ -71,16 +72,27 @@ class Play extends Phaser.Scene {
     }
 
     update() {
-        for(let c = 0; c < this.comets.length; c++) {
-            this.comets[c].update();
-            this.cometTrails[c].update();
-            if(this.checkCollision(this.comets[c])) {
-                this.gameOver();
+        if (!this.comets[0].isPlaying) {
+            if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
+                console.log("Pressed space");
+                this.comets = [];
+                this.cometTrails = [];
+                this.dino = null;
+                this.scene.restart();
+                return;
             }
-        }
-        this.dino.update();
+        } else {
+            for(let c = 0; c < this.comets.length; c++) {
+                this.comets[c].update();
+                this.cometTrails[c].update();
+                if(this.checkCollision(this.comets[c])) {
+                    this.gameOver();
+                }
+            }
+            this.dino.update();
 
-        this.cometTimer(this.timer.getElapsedSeconds());
+            this.cometTimer(this.timer.getElapsedSeconds());
+        }
     }
 
     gameOver() {
