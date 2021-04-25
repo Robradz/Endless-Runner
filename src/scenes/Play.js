@@ -46,7 +46,8 @@ class Play extends Phaser.Scene {
     }
 
     createComet() {
-        if (this.comets.length > 15) { return; }
+        if (this.comets.length > 15) { 
+            console.warn("Comets reached max"); return; }
         let comet = new Comet(
             this,
             game.config.width + 50,
@@ -79,7 +80,6 @@ class Play extends Phaser.Scene {
         }
         this.dino.update();
 
-        console.log(this.timer.getElapsedSeconds());
         this.cometTimer(this.timer.getElapsedSeconds());
     }
 
@@ -94,7 +94,6 @@ class Play extends Phaser.Scene {
     }
 
     cometTimer(timerr){
-        console.log(Math.floor(timerr), this.comets.length);
         if (Math.floor(timerr)/this.cometDelay > this.comets.length) {
             this.createComet();
         }
