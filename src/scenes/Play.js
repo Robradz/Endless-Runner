@@ -10,15 +10,36 @@ class Play extends Phaser.Scene {
     }
 
     preload() {
+        this.load.image('background0', './assets/background0_sky.png');
+        this.load.image('background1', './assets/background1_volcanoes.png');
+        this.load.image('background2', './assets/background2_cyanGrass.png');
+        this.load.image('background3', './assets/background3_purpleGrass.png');
+
         this.load.image('dino', './assets/trex_001.png');
         this.load.image('dinoDown', './assets/trex_down_001.png');
         this.load.image('dinoUp', './assets/trex_up_001.png');
         this.load.image('cometDiag', './assets/comets-1.png');
         this.load.image('comet', './assets/Rock.png');
         this.load.image('flame', './assets/Flame-1.png');
+
+        
+
+        
     }
 
     create() {
+        //Add tilesprites
+
+        this.background0 = this.add.tileSprite(0, 0, 640, 480, 'background0').setOrigin(0, 0);
+        this.background1 = this.add.tileSprite(0, 0, 640, 480, 'background1').setOrigin(0, 0);
+        this.background2 = this.add.tileSprite(0, 0, 640, 480, 'background2').setOrigin(0, 0);
+        this.background3 = this.add.tileSprite(0, 0, 640, 480, 'background3').setOrigin(0, 0);
+
+        this.background0.depth = -3;
+        this.background1.depth = -3;
+        this.background2.depth = -3;
+        this.background3.depth = -3;
+
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -31,6 +52,7 @@ class Play extends Phaser.Scene {
             'dino'
         );
 
+        
 
         //TODO: Randomize spawning
         for (let i = 0; i < this.numComets; i++) {
@@ -93,6 +115,12 @@ class Play extends Phaser.Scene {
 
             this.cometTimer(this.timer.getElapsedSeconds());
         }
+
+
+        this.background1.tilePositionX += 1;
+        this.background2.tilePositionX += 2;
+        this.background3.tilePositionX += 3;
+        
     }
 
     gameOver() {
