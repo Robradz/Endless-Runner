@@ -34,12 +34,9 @@ class Play extends Phaser.Scene {
         for (let i = 0; i < this.numComets; i++) {
             let comet = new Comet(
                 this,
-                game.config.width / 2,
-                game.config.height / 2,
                 'comet',
                 0
             );
-
             let cometTrail = new CometTrail(
                 this,
                 comet.x,
@@ -65,6 +62,10 @@ class Play extends Phaser.Scene {
             }
         }
         this.dino.update();
+    }
+
+    randomizeSpawningPair() {
+        return Math.sqrt(Math.pow(x2-x1,2) + Math.pow(y2-y1,2));
     }
 
     distanceBetween(x1, y1, x2, y2) {
