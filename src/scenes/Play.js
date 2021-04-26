@@ -49,9 +49,18 @@ class Play extends Phaser.Scene {
             'dino'
         );
 
-        
+        this.scoreConfig = {
+            fontFamily: 'Courier',
+            fontSize: '28px',
+            backgroundColor: '#F3B141',
+            color: '#843605',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+        }
 
-        //TODO: Randomize spawning
         for (let i = 0; i < this.numComets; i++) {
             this.createComet();
         }
@@ -92,6 +101,10 @@ class Play extends Phaser.Scene {
 
     update() {
         if (!this.comets[0].isPlaying) {
+            this.add.text(game.config.width/2, game.config.height/2, 
+                'GAME OVER', this.scoreConfig).setOrigin(0.5);
+            this.add.text(game.config.width/2, game.config.height/2 + 64, 
+                'Press SPACE to Restart', this.scoreConfig).setOrigin(0.5);
             if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
                 console.log("Pressed space");
                 this.comets = [];
