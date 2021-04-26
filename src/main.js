@@ -4,7 +4,7 @@ let config = {
     width: 640,
     height: 480,
     fps: {
-        target: 30,
+        target: 60,
         forceSetTimeOut: true
         },
     scene: [Menu, Play]
