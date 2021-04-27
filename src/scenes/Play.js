@@ -4,10 +4,12 @@ class Play extends Phaser.Scene {
         super("playScene");
         this.comets = [];
         this.cometTrails = [];
+        this.fuelPickup;
         this.numComets = 3;
         this.sideBuffer = 50;
         this.cometDelay = 4;
         this.maxComets = 16;
+        this.bonusTime = 0; // Extra time from fuel pickups (in seconds)
     }
 
     preload() {
@@ -22,6 +24,7 @@ class Play extends Phaser.Scene {
         this.load.image('cometDiag', './assets/comets-1.png');
         this.load.image('comet', './assets/Rock.png');
         this.load.image('flame', './assets/Flame-1.png');
+        this.load.image('fuel', './assets/Fuel Bottle-1.png');
     }
 
     create() {
@@ -72,6 +75,13 @@ class Play extends Phaser.Scene {
             loop: false
         });
 
+        this.fuelPickup = new Fuel (
+            this,
+            game.config.width + 50,
+            Math.random() * game.config.height,
+            'fuel',
+            0
+        );
     }
 
     createComet() {
@@ -110,6 +120,7 @@ class Play extends Phaser.Scene {
                 this.comets = [];
                 this.cometTrails = [];
                 this.dino = null;
+                this.bonusTime = 0;
                 this.scene.restart();
                 return;
             }
@@ -121,7 +132,14 @@ class Play extends Phaser.Scene {
                     this.gameOver();
                 }
             }
+
+            if (this.checkCollision(this.fuelPickup)) {
+                this.bonusTime += 5;
+                this.fuelPickup.reset();
+            }
+
             this.dino.update();
+            this.fuelPickup.update();
 
             this.cometTimer(this.timer.getElapsedSeconds());
 
@@ -139,6 +157,7 @@ class Play extends Phaser.Scene {
             this.comets[c].movementSpeedX = 0;
             this.comets[c].movementSpeedY = 0;
         }
+
     }
 
     cometTimer(timerr){

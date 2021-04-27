@@ -38,7 +38,7 @@ class Comet extends Phaser.GameObjects.Sprite {
             this.x = game.config.width + 50;
             this.y = Math.random() * game.config.height;
         } else {
-            this.x = Math.random() *  game.config.width;
+            this.x = Math.random() *  game.config.width * 1.5;
             this.y = -50;
         }
         this.baseMovementSpeed = Math.random() * 3 + 3;
