@@ -10,6 +10,7 @@ class Play extends Phaser.Scene {
         this.cometDelay = 4;
         this.maxComets = 16;
         this.bonusTime = 0; // Extra time from fuel pickups (in seconds)
+        this.timePlayed;
     }
 
     preload() {
@@ -64,9 +65,30 @@ class Play extends Phaser.Scene {
             },
         }
 
+        this.timeConfig = {
+            fontFamily: 'Courier',
+            bold: true,
+            fontSize: '28px',
+            backgroundColor: '#FFFFFF',
+            color: '#000000',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 100
+        }
+
         for (let i = 0; i < this.numComets; i++) {
             this.createComet();
         }
+
+        this.timePlayed = this.add.text(
+            game.config.width - 100, 
+            0, 
+            0,
+            this.timeConfig
+        );
 
         this.timer = this.time.addEvent({
             delay: Infinity,
@@ -146,6 +168,8 @@ class Play extends Phaser.Scene {
             this.background1.tilePositionX += 1;
             this.background2.tilePositionX += 2;
             this.background3.tilePositionX += 3;
+
+            this.timePlayed.text = this.timer.getElapsedSeconds() + this.bonusTime;
         }
     }
 
@@ -161,7 +185,7 @@ class Play extends Phaser.Scene {
     }
 
     cometTimer(timerr){
-        if (Math.floor(timerr)/this.cometDelay > this.comets.length) {
+        if ((Math.floor(timerr) + this.bonusTime) / this.cometDelay > this.comets.length) {
             this.createComet();
         }
     }

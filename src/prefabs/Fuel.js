@@ -34,11 +34,11 @@ class Fuel extends Phaser.GameObjects.Sprite {
     reset() {
         this.isHorizontal = Math.floor(Math.random() * 2);
         if (this.isHorizontal) {
-            this.x = game.config.width * 2;
+            this.x = game.config.width * 4;
             this.y = Math.random() * game.config.height;
         } else {
-            this.x = Math.random() *  game.config.width * 2;
-            this.y = game.config.height * -2;
+            this.x = Math.random() *  game.config.width * 4;
+            this.y = game.config.height * -4;
         }
         this.baseMovementSpeed = Math.random() * 3 + 3;
     }
