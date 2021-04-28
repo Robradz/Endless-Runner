@@ -168,13 +168,14 @@ class Play extends Phaser.Scene {
 
             this.cometTimer(this.timer.getElapsedSeconds());
 
-        this.background0.tilePositionX += 0.3;
-        this.background1.tilePositionX += 1;
-        this.background2.tilePositionX += 2.5;
-        this.background3.tilePositionX += 3;
-        this.background4.tilePositionX += 4;
-        
-        this.timePlayed.text = this.timer.getElapsedSeconds() + this.bonusTime;
+            this.background0.tilePositionX += 0.3;
+            this.background1.tilePositionX += 1;
+            this.background2.tilePositionX += 2.5;
+            this.background3.tilePositionX += 3;
+            this.background4.tilePositionX += 4;
+            
+            this.timePlayed.text = this.timer.getElapsedSeconds() + this.bonusTime;
+        }
     }
 
     gameOver() {
