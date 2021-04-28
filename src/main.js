@@ -17,3 +17,4 @@ let borderPadding = borderUISize / 3;
 
 // Declare Keys
 let keyA, keyD, keyW, keyS, keySPACE;
+let cursors;
