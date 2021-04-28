@@ -27,6 +27,12 @@ class Play extends Phaser.Scene {
         this.load.image('comet', './assets/Rock.png');
         this.load.image('flame', './assets/Flame-1.png');
         this.load.image('fuel', './assets/Fuel Bottle-1.png');
+
+        this.load.audio('goDown','./assets/jet_down.wav');
+        this.load.audio('hover', './assets/jet_lower.wav');
+        this.load.audio('goUp', './assets/jet_start.wav');
+        this.load.audio('slow', './assets/jet_lower.wav');
+        this.load.audio('falldown', './assets/falldown.wav');
     }
 
     create() {
@@ -49,6 +55,9 @@ class Play extends Phaser.Scene {
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+        this.sfxDied = this.sound.add('falldown');
+
         this.dino = new Dino(
             this,
             this.sideBuffer,
@@ -180,12 +189,15 @@ class Play extends Phaser.Scene {
 
     gameOver() {
         this.dino.movementSpeed = 0;
+        this.sound.stopAll();
+        this.sfxDied.play();
         for(let c = 0; c < this.comets.length; c++) {
             this.comets[c].isPlaying = false;
             this.cometTrails[c].isPlaying = false;
             this.comets[c].movementSpeedX = 0;
             this.comets[c].movementSpeedY = 0;
         }
+        
 
     }
 
