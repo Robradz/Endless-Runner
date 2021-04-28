@@ -17,8 +17,9 @@ class Play extends Phaser.Scene {
     preload() {
         this.load.image('background0', './assets/background0_sky.png');
         this.load.image('background1', './assets/background1_volcanoes.png');
-        this.load.image('background2', './assets/background2_cyanGrass.png');
-        this.load.image('background3', './assets/background3_purpleGrass.png');
+        this.load.image('background2', './assets/background2_smallGrass.png');
+        this.load.image('background3', './assets/background3_midGrass.png');
+        this.load.image('background4', './assets/background4_foreGrass.png');
 
         this.load.image('dino', './assets/trex_001.png');
         this.load.image('dinoDown', './assets/trex_down_001.png');
@@ -27,6 +28,12 @@ class Play extends Phaser.Scene {
         this.load.image('comet', './assets/Rock.png');
         this.load.image('flame', './assets/Flame-1.png');
         this.load.image('fuel', './assets/Fuel Bottle-1.png');
+
+        this.load.audio('goDown','./assets/jet_down.wav');
+        this.load.audio('hover', './assets/jet_lower.wav');
+        this.load.audio('goUp', './assets/jet_start.wav');
+        this.load.audio('slow', './assets/jet_lower.wav');
+        this.load.audio('falldown', './assets/falldown.wav');
     }
 
     create() {
@@ -36,17 +43,22 @@ class Play extends Phaser.Scene {
         this.background1 = this.add.tileSprite(0, 0, 640, 480, 'background1').setOrigin(0, 0);
         this.background2 = this.add.tileSprite(0, 0, 640, 480, 'background2').setOrigin(0, 0);
         this.background3 = this.add.tileSprite(0, 0, 640, 480, 'background3').setOrigin(0, 0);
+        this.background4 = this.add.tileSprite(0, 0, 640, 480, 'background4').setOrigin(0, 0);
 
         this.background0.depth = -3;
         this.background1.depth = -3;
         this.background2.depth = -3;
         this.background3.depth = -3;
+        this.background4.depth = -3;
 
         keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+
+        this.sfxDied = this.sound.add('falldown');
+
         this.dino = new Dino(
             this,
             this.sideBuffer,
@@ -191,22 +203,27 @@ class Play extends Phaser.Scene {
 
             this.cometTimer(this.timer.getElapsedSeconds());
 
+            this.background0.tilePositionX += 0.3;
             this.background1.tilePositionX += 1;
-            this.background2.tilePositionX += 2;
+            this.background2.tilePositionX += 2.5;
             this.background3.tilePositionX += 3;
-
+            this.background4.tilePositionX += 4;
+            
             this.timePlayed.text = this.timer.getElapsedSeconds() + this.bonusTime;
         }
     }
 
     gameOver() {
         this.dino.movementSpeed = 0;
+        this.sound.stopAll();
+        this.sfxDied.play();
         for(let c = 0; c < this.comets.length; c++) {
             this.comets[c].isPlaying = false;
             this.cometTrails[c].isPlaying = false;
             this.comets[c].movementSpeedX = 0;
             this.comets[c].movementSpeedY = 0;
         }
+        
 
     }
 

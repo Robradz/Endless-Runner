@@ -4,27 +4,48 @@ class Dino extends Phaser.GameObjects.Sprite {
         super(scene, x, y, texture, frame);
         scene.add.existing(this);
         this.movementSpeed = 4;
+        this.xSpeed = 0;
+        this.ySpeed = 0;
         this.collisionRadius = this.height / 2;
         this.side_buffer = this.width/2;
+        this.sfxDown = scene.sound.add('goDown');
+        this.sfxUp = scene.sound.add('goUp');
+        this.sfxHover = scene.sound.add('hover');
+        this.sfxHover.loop = true;
+        this.sfxHover.play();
+        
     }
     update(){
-        if(keyS.isDown) {
-            this.y += this.movementSpeed;
+        if(Phaser.Input.Keyboard.JustDown(keyS)) {
+            this.ySpeed = this.movementSpeed;
+            this.xSpeed = 0;
+            this.sfxUp.stop();
+            this.sfxDown.play();
             this.setTexture('dinoDown');
         }
-        if(keyW.isDown) {
-            this.y -= this.movementSpeed;
+        if(Phaser.Input.Keyboard.JustDown(keyW)) {
+            this.ySpeed = -this.movementSpeed;
+            this.xSpeed = 0;
             this.setTexture('dinoUp');
+            this.sfxUp.play();
+            this.sfxDown.stop();
         }
-        if(keyA.isDown) {
-            this.x -= this.movementSpeed;
+        if(Phaser.Input.Keyboard.JustDown(keyA)) {
+            this.xSpeed = -this.movementSpeed;
+            this.ySpeed = 0;
             this.setTexture('dinoDown');
+            this.sfxUp.stop();
+            this.sfxDown.stop();
         }
-        if(keyD.isDown) {
-            this.x += this.movementSpeed;
+        if(Phaser.Input.Keyboard.JustDown(keyD)) {
+            this.xSpeed = this.movementSpeed;
+            this.ySpeed = 0;
             this.setTexture('dino');
+            this.sfxUp.stop();
+            this.sfxDown.stop();
         }
-
+        this.x += this.xSpeed;
+        this.y += this.ySpeed;
         this.checkBoundaries();
     }
 
