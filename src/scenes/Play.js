@@ -11,6 +11,7 @@ class Play extends Phaser.Scene {
         this.maxComets = 16;
         this.bonusTime = 0; // Extra time from fuel pickups (in seconds)
         this.timePlayed;
+        this.highScore = 0;
     }
 
     preload() {
@@ -79,6 +80,20 @@ class Play extends Phaser.Scene {
             fixedWidth: 100
         }
 
+        this.highScoreConfig = {
+            fontFamily: 'Courier',
+            bold: true,
+            fontSize: '28px',
+            backgroundColor: '#FFFFFF',
+            color: '#000000',
+            align: 'center',
+            padding: {
+                top: 5,
+                bottom: 5,
+            },
+            fixedWidth: 300
+        }
+
         for (let i = 0; i < this.numComets; i++) {
             this.createComet();
         }
@@ -88,6 +103,13 @@ class Play extends Phaser.Scene {
             0, 
             0,
             this.timeConfig
+        );
+
+        this.highScoreText = this.add.text(
+            0, 
+            0, 
+            "High Score: " + this.highScore,
+            this.highScoreConfig
         );
 
         this.timer = this.time.addEvent({
@@ -143,6 +165,10 @@ class Play extends Phaser.Scene {
                 this.cometTrails = [];
                 this.dino = null;
                 this.bonusTime = 0;
+                this.timer.timeScale = 0;
+                if (this.timer.getElapsedSeconds() + this.bonusTime > this.highScore) {
+                    this.highScore = this.timer.getElapsedSeconds() + this.bonusTime;
+                }
                 this.scene.restart();
                 return;
             }
