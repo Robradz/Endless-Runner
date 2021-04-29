@@ -75,7 +75,7 @@ class Play extends Phaser.Scene {
         cursors = this.input.keyboard.createCursorKeys();
 
         this.sfxDied = this.sound.add('falldown', {volume: 0.1});
-        this.bgm = this.sound.add('theme',{volume: 0.8, loop:true});
+        this.bgm = this.sound.add('theme',{volume: 1, loop:true});
         this.bgm.play();
 
         this.dino = new Dino(
