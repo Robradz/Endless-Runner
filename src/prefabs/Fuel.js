@@ -6,7 +6,7 @@ class Fuel extends Phaser.GameObjects.Sprite {
         this.baseMovementSpeed = Math.random() * 3;
         this.movementSpeedX;
         this.movementSpeedY;
-        this.collisionRadius = 0;
+        this.collisionRadius = this.height/2;
         this.isHorizontal = Math.floor(Math.random() * 2);
         this.reset();
         this.depth = -1;
