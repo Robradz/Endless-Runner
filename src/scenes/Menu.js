@@ -6,7 +6,9 @@ class Menu extends Phaser.Scene {
     
     preload() {
         this.load.image('menu_back','./assets/Menubackground-1.png')
-        this.load.multiatlas('atlas', 'assets/atlas.json', "assets");
+        if(!this.textures.exists('atlas')){
+            this.load.multiatlas('atlas', 'assets/atlas.json', "assets");
+        }
     }
 
     create() {
