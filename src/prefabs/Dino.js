@@ -8,12 +8,12 @@ class Dino extends Phaser.GameObjects.Sprite {
         this.ySpeed = 0;
         this.collisionRadius = this.height / 2;
         this.side_buffer = this.width/2;
-        this.sfxDown = scene.sound.add('down');
-        this.sfxUp = scene.sound.add('up');
-        this.sfxLeft = scene.sound.add('left');
-        this.sfxRight = scene.sound.add('right');
-        this.sfxHover = scene.sound.add('hover');
-        this.sfxBrake = scene.sound.add('brake');
+        this.sfxDown = scene.sound.add('down', {volume: 0.3});
+        this.sfxUp = scene.sound.add('up', {volume: 0.3});
+        this.sfxLeft = scene.sound.add('left', {volume: 0.3});
+        this.sfxRight = scene.sound.add('right', {volume: 0.3});
+        this.sfxHover = scene.sound.add('hover', {volume: 0.3});
+        this.sfxBrake = scene.sound.add('brake', {volume: 0.3});
         this.sfxHover.loop = true;
         this.sfxHover.play();
         this.isBraking = false;

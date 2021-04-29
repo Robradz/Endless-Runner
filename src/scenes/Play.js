@@ -74,7 +74,7 @@ class Play extends Phaser.Scene {
         keyEsc = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
         cursors = this.input.keyboard.createCursorKeys();
 
-        this.sfxDied = this.sound.add('falldown');
+        this.sfxDied = this.sound.add('falldown', {volume: 0.3});
         this.bgm = this.sound.add('theme',{volume: 0.3, loop:true});
         this.bgm.play();
 
