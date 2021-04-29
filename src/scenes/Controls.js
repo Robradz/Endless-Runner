@@ -13,10 +13,9 @@ class Controls extends Phaser.Scene {
         this.background = this.add.tileSprite(0,0,640,480,'Instruc_back').setOrigin(0,0);
         // display score
         let menuConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'stoneAge',
             fontSize: '18px',
-            backgroundColor: '#03A1FC',
-            color: '#02112B',
+            color: '#ffffff',
             align: 'right',
             padding: {
                 top: 5,
@@ -34,9 +33,9 @@ class Controls extends Phaser.Scene {
         this.add.text(game.config.width / 2, game.config.height / 2- 50, 
             'Press ESC to Exit to the menu', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 + 30, 
-            'Fuel tank can add 4 sec into the timer', menuConfig).setOrigin(0.5);
+            'Fuel tanks add time to the timer', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 + 120, 
-            'Hourglass will freeze the comets', menuConfig).setOrigin(0.5);
+            'Hourglasses temporarily freeze comets', menuConfig).setOrigin(0.5);
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }

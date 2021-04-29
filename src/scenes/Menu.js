@@ -19,10 +19,9 @@ class Menu extends Phaser.Scene {
         this.bgm.play();
         // display score
         let menuConfig = {
-            fontFamily: 'Inconsolata',
+            fontFamily: 'stoneAge',
             fontSize: '28px',
-            backgroundColor: '#4C476B',
-            color: '#fff',
+            color: '#ffffff',
             align: 'center',
             padding: {
                 top: 5,

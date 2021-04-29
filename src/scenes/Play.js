@@ -97,10 +97,9 @@ class Play extends Phaser.Scene {
         this.dino.anims.create({ key: 'idle', frames: this.dino.animIdle, frameRate: 10, repeat: -1 });
         this.dino.anims.play('idle');
         this.scoreConfig = {
-            fontFamily: 'Inconsolata',
-            fontSize: '28px',
-            backgroundColor: '#4C476B',
-            color: '#fff',
+            fontFamily: 'stoneAge',
+            fontSize: '40px',
+            color: '#FFFFFF',
             align: 'center',
             padding: {
                 top: 5,
@@ -110,10 +109,9 @@ class Play extends Phaser.Scene {
         }
 
         this.timeConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'dankosaurus',
             bold: true,
             fontSize: '28px',
-            backgroundColor: '#FFFFFF',
             color: '#000000',
             align: 'center',
             padding: {
@@ -124,17 +122,16 @@ class Play extends Phaser.Scene {
         }
 
         this.highScoreConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'dankosaurus',
             bold: true,
             fontSize: '28px',
-            backgroundColor: '#FFFFFF',
             color: '#000000',
-            align: 'center',
+            align: 'left',
             padding: {
                 top: 5,
                 bottom: 5,
             },
-            fixedWidth: 300
+            fixedWidth: 200
         }
 
         for (let i = 0; i < this.numComets; i++) {
