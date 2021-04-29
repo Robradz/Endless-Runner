@@ -5,10 +5,12 @@ class Menu extends Phaser.Scene {
     }
     
     preload() {
+        this.load.image('menu_back','./assets/Menubackground-1.png')
 
     }
 
     create() {
+        this.background = this.add.tileSprite(0,0,640,480,'menu_back').setOrigin(0,0);
         // display score
         let menuConfig = {
             fontFamily: 'Courier',
