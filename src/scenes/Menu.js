@@ -13,10 +13,10 @@ class Menu extends Phaser.Scene {
         this.background = this.add.tileSprite(0,0,640,480,'menu_back').setOrigin(0,0);
         // display score
         let menuConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Inconsolata',
             fontSize: '28px',
-            backgroundColor: '#03A1FC',
-            color: '#02112B',
+            backgroundColor: '#4C476B',
+            color: '#fff',
             align: 'center',
             padding: {
                 top: 5,
