@@ -36,6 +36,7 @@ class Play extends Phaser.Scene {
         this.load.audio('right', './assets/right.wav');
         this.load.audio('brake', './assets/brake.wav');
         this.load.audio('falldown', './assets/falldown.wav');
+        this.load.audio('theme', './assets/dinotheme.wav');
     }
 
     create() {
@@ -58,9 +59,12 @@ class Play extends Phaser.Scene {
         keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        keyEsc = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.ESC);
         cursors = this.input.keyboard.createCursorKeys();
 
         this.sfxDied = this.sound.add('falldown');
+        this.bgm = this.sound.add('theme',{volume: 0.3, loop:true});
+        this.bgm.play();
 
         this.dino = new Dino(
             this,
@@ -225,6 +229,10 @@ class Play extends Phaser.Scene {
             this.background4.tilePositionX += 6;
             
             this.timePlayed.text = this.timer.getElapsedSeconds() + this.bonusTime;
+        }
+        if (Phaser.Input.Keyboard.JustDown(keyEsc)) {
+            this.sound.stopAll();
+            this.scene.start('menuScene');
         }
     }
 

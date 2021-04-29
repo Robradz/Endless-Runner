@@ -5,7 +5,9 @@ class Menu extends Phaser.Scene {
     }
     
     preload() {
-        this.load.image('menu_back','./assets/Menubackground-1.png')
+        this.load.image('menu_back','./assets/Menubackground-1.png');
+        this.load.audio('menu', './assets/menu.wav');
+        
         if(!this.textures.exists('atlas')){
             this.load.multiatlas('atlas', 'assets/atlas.json', "assets");
         }
@@ -13,6 +15,8 @@ class Menu extends Phaser.Scene {
 
     create() {
         this.background = this.add.tileSprite(0,0,640,480,'menu_back').setOrigin(0,0);
+        this.bgm = this.sound.add('menu',{volume: 0.3,loop:true});
+        this.bgm.play();
         // display score
         let menuConfig = {
             fontFamily: 'Inconsolata',
@@ -41,9 +45,11 @@ class Menu extends Phaser.Scene {
 
     update() {
         if (Phaser.Input.Keyboard.JustDown(keyW)) {
+            this.sound.stopAll();
             this.scene.start('playScene');
         }
         if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            this.sound.stopAll();
             this.scene.start('controlScene');
         }
     }
