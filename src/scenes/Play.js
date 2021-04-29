@@ -29,10 +29,12 @@ class Play extends Phaser.Scene {
         // this.load.image('flame', './assets/Flame-1.png');
         //this.load.image('fuel', './assets/Fuel Bottle-1.png');
 
-        this.load.audio('goDown','./assets/jet_down.wav');
-        this.load.audio('hover', './assets/jet_lower.wav');
-        this.load.audio('goUp', './assets/jet_start.wav');
-        this.load.audio('slow', './assets/jet_lower.wav');
+        this.load.audio('down','./assets/down.wav');
+        this.load.audio('hover', './assets/hover.wav');
+        this.load.audio('up', './assets/up.wav');
+        this.load.audio('left', './assets/left.wav');
+        this.load.audio('right', './assets/right.wav');
+        this.load.audio('brake', './assets/brake.wav');
         this.load.audio('falldown', './assets/falldown.wav');
     }
 
@@ -220,7 +222,7 @@ class Play extends Phaser.Scene {
             this.background1.tilePositionX += 1;
             this.background2.tilePositionX += 2.5;
             this.background3.tilePositionX += 3;
-            this.background4.tilePositionX += 4;
+            this.background4.tilePositionX += 6;
             
             this.timePlayed.text = this.timer.getElapsedSeconds() + this.bonusTime;
         }

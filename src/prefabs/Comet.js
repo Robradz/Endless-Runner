@@ -7,7 +7,7 @@ class Comet extends Phaser.GameObjects.Sprite {
         this.movementSpeedX;
         this.movementSpeedY;
         this.collisionRadius = 0;
-        this.isHorizontal = Math.floor(Math.random() * 2);
+        this.isHorizontal = (Math.random() > 0.5);
         this.reset();
         this.depth = -1;
         this.isPlaying = true;
