@@ -32,7 +32,7 @@ class Controls extends Phaser.Scene {
         this.add.text(game.config.width / 2, game.config.height / 2 - 100, 
             'Press SPACE to restart when dead', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width / 2, game.config.height / 2- 50, 
-            'Press SPACE to Exit to the menu', menuConfig).setOrigin(0.5);
+            'Press ESC to Exit to the menu', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 + 30, 
             'Fuel tank can add 4 sec into the timer', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width/2, game.config.height/2 + 120, 
