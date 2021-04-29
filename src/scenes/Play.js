@@ -79,15 +79,16 @@ class Play extends Phaser.Scene {
         this.dino.anims.create({ key: 'idle', frames: this.dino.animIdle, frameRate: 10, repeat: -1 });
         this.dino.anims.play('idle');
         this.scoreConfig = {
-            fontFamily: 'Courier',
+            fontFamily: 'Inconsolata',
             fontSize: '28px',
-            backgroundColor: '#F3B141',
-            color: '#843605',
+            backgroundColor: '#4C476B',
+            color: '#fff',
             align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
             },
+            fixedWidth: 0
         }
 
         this.timeConfig = {
