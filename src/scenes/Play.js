@@ -98,14 +98,13 @@ class Play extends Phaser.Scene {
         this.dino.anims.play('idle');
         this.scoreConfig = {
             fontFamily: 'stoneAge',
-            fontSize: '40px',
+            fontSize: '28px',
             color: '#FFFFFF',
             align: 'center',
             padding: {
                 top: 5,
                 bottom: 5,
             },
-            fixedWidth: 0
         }
 
         this.timeConfig = {
