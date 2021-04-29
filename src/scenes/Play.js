@@ -48,9 +48,6 @@ class Play extends Phaser.Scene {
         this.bonusTime = 0;
         if(this.timer){
             this.timer.timeScale = 0;
-            if (this.timer.getElapsedSeconds() + this.bonusTime > this.highScore) {
-                this.highScore = this.timer.getElapsedSeconds() + this.bonusTime;
-            }
         }
         //Add tilesprites
 
@@ -237,6 +234,9 @@ class Play extends Phaser.Scene {
     }
 
     gameOver() {
+        if (this.timer.getElapsedSeconds() + this.bonusTime > this.highScore) {
+            this.highScore = this.timer.getElapsedSeconds() + this.bonusTime;
+        }
         this.dino.movementSpeed = 0;
         this.sound.stopAll();
         this.sfxDied.play();
