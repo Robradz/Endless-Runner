@@ -21,13 +21,13 @@ class Play extends Phaser.Scene {
         this.load.image('background3', './assets/background3_midGrass.png');
         this.load.image('background4', './assets/background4_foreGrass.png');
 
-        this.load.image('dino', './assets/trex_001.png');
-        this.load.image('dinoDown', './assets/trex_down_001.png');
-        this.load.image('dinoUp', './assets/trex_up_001.png');
-        this.load.image('cometDiag', './assets/comets-1.png');
-        this.load.image('comet', './assets/Rock.png');
-        this.load.image('flame', './assets/Flame-1.png');
-        this.load.image('fuel', './assets/Fuel Bottle-1.png');
+        // this.load.image('dino', './assets/trex_001.png');
+        // this.load.image('dinoDown', './assets/trex_down_001.png');
+        // this.load.image('dinoUp', './assets/trex_up_001.png');
+        // this.load.image('cometDiag', './assets/comets-1.png');
+        // this.load.image('comet', './assets/Rock.png');
+        // this.load.image('flame', './assets/Flame-1.png');
+        //this.load.image('fuel', './assets/Fuel Bottle-1.png');
 
         this.load.audio('goDown','./assets/jet_down.wav');
         this.load.audio('hover', './assets/jet_lower.wav');
@@ -64,9 +64,20 @@ class Play extends Phaser.Scene {
             this,
             this.sideBuffer,
             game.config.height/2,
-            'dino'
+            'atlas',
+            "dino/trex_idle_1.png"
         );
-
+        this.dino.animUp = this.anims.generateFrameNames('atlas', { start: 1, end: 3, prefix:'dino/trex_up_', suffix:'.png' });
+        this.dino.animDown = this.anims.generateFrameNames('atlas', { start: 1, end: 3, prefix:'dino/trex_down_', suffix:'.png' });
+        this.dino.animForward = this.anims.generateFrameNames('atlas', { start: 1, end: 3, prefix:'dino/trex_forward_', suffix:'.png' });
+        this.dino.animBack = this.anims.generateFrameNames('atlas', { start: 1, end: 3, prefix:'dino/trex_back_', suffix:'.png' });
+        this.dino.animIdle = this.anims.generateFrameNames('atlas', { start: 1, end: 3, prefix:'dino/trex_idle_', suffix:'.png' });
+        this.dino.anims.create({ key: 'up', frames: this.dino.animUp, frameRate: 10, repeat: -1 });
+        this.dino.anims.create({ key: 'down', frames: this.dino.animDown, frameRate: 10, repeat: -1 });
+        this.dino.anims.create({ key: 'left', frames: this.dino.animBack, frameRate: 10, repeat: -1 });
+        this.dino.anims.create({ key: 'right', frames: this.dino.animForward, frameRate: 10, repeat: -1 });
+        this.dino.anims.create({ key: 'idle', frames: this.dino.animIdle, frameRate: 10, repeat: -1 });
+        this.dino.anims.play('idle');
         this.scoreConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
@@ -136,8 +147,8 @@ class Play extends Phaser.Scene {
             this,
             game.config.width + 50,
             Math.random() * game.config.height,
-            'fuel',
-            0
+            'atlas',
+            'Fuel Bottle-1.png'
         );
     }
 
@@ -148,16 +159,16 @@ class Play extends Phaser.Scene {
             this,
             game.config.width + 50,
             Math.random() * game.config.height,
-            'comet',
-            0
+            'atlas',
+            'Rock.png'
         );
 
         let cometTrail = new CometTrail(
             this,
             comet.x,
             comet.y,
-            'flame',
-            0,
+            'atlas',
+            'Flame-1.png',
             comet
         );
 
@@ -218,6 +229,7 @@ class Play extends Phaser.Scene {
         this.dino.movementSpeed = 0;
         this.sound.stopAll();
         this.sfxDied.play();
+        this.dino.anims.play('idle');
         for(let c = 0; c < this.comets.length; c++) {
             this.comets[c].isPlaying = false;
             this.cometTrails[c].isPlaying = false;

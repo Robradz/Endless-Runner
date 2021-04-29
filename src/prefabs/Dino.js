@@ -13,6 +13,7 @@ class Dino extends Phaser.GameObjects.Sprite {
         this.sfxHover = scene.sound.add('hover');
         this.sfxHover.loop = true;
         this.sfxHover.play();
+        
     }
     update(){
         if(Phaser.Input.Keyboard.JustDown(keyS) || cursors.down.isDown) {
@@ -20,26 +21,26 @@ class Dino extends Phaser.GameObjects.Sprite {
             this.xSpeed = 0;
             this.sfxUp.stop();
             this.sfxDown.play();
-            this.setTexture('dinoDown');
+            this.anims.play('down');
         }
         if(Phaser.Input.Keyboard.JustDown(keyW) || cursors.up.isDown) {
             this.ySpeed = -this.movementSpeed;
             this.xSpeed = 0;
-            this.setTexture('dinoUp');
+            this.anims.play('up');
             this.sfxUp.play();
             this.sfxDown.stop();
         }
         if(Phaser.Input.Keyboard.JustDown(keyA) || cursors.left.isDown) {
             this.xSpeed = -this.movementSpeed;
             this.ySpeed = 0;
-            this.setTexture('dinoDown');
+            this.anims.play('left');
             this.sfxUp.stop();
             this.sfxDown.stop();
         }
         if(Phaser.Input.Keyboard.JustDown(keyD) || cursors.right.isDown) {
             this.xSpeed = this.movementSpeed;
             this.ySpeed = 0;
-            this.setTexture('dino');
+            this.anims.play('right');
             this.sfxUp.stop();
             this.sfxDown.stop();
         }
