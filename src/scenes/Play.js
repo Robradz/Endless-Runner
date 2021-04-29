@@ -40,6 +40,18 @@ class Play extends Phaser.Scene {
     }
 
     create() {
+
+        this.sound.stopAll();
+        this.comets = [];
+        this.cometTrails = [];
+        this.dino = null;
+        this.bonusTime = 0;
+        if(this.timer){
+            this.timer.timeScale = 0;
+            if (this.timer.getElapsedSeconds() + this.bonusTime > this.highScore) {
+                this.highScore = this.timer.getElapsedSeconds() + this.bonusTime;
+            }
+        }
         //Add tilesprites
 
         this.background0 = this.add.tileSprite(0, 0, 640, 480, 'background0').setOrigin(0, 0);
@@ -192,14 +204,6 @@ class Play extends Phaser.Scene {
                 'Press SPACE to Restart', this.scoreConfig).setOrigin(0.5);
             if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
                 console.log("Pressed space");
-                this.comets = [];
-                this.cometTrails = [];
-                this.dino = null;
-                this.bonusTime = 0;
-                this.timer.timeScale = 0;
-                if (this.timer.getElapsedSeconds() + this.bonusTime > this.highScore) {
-                    this.highScore = this.timer.getElapsedSeconds() + this.bonusTime;
-                }
                 this.scene.restart();
                 return;
             }
@@ -231,7 +235,6 @@ class Play extends Phaser.Scene {
             this.timePlayed.text = this.timer.getElapsedSeconds() + this.bonusTime;
         }
         if (Phaser.Input.Keyboard.JustDown(keyEsc)) {
-            this.sound.stopAll();
             this.scene.start('menuScene');
         }
     }
@@ -240,7 +243,6 @@ class Play extends Phaser.Scene {
         this.dino.movementSpeed = 0;
         this.sound.stopAll();
         this.sfxDied.play();
-        this.dino.anims.play('idle');
         for(let c = 0; c < this.comets.length; c++) {
             this.comets[c].isPlaying = false;
             this.cometTrails[c].isPlaying = false;
