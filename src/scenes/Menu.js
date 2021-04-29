@@ -5,7 +5,7 @@ class Menu extends Phaser.Scene {
     }
     
     preload() {
-
+        this.load.multiatlas('atlas', 'assets/atlas.json', "assets");
     }
 
     create() {
