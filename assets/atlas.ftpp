@@ -1,0 +1,64 @@
+{
+  "meta": {
+    "version": "0.6.7"
+  },
+  "savePath": "",
+  "images": [
+    {
+      "name": "Flame-1.png",
+      "path": "C:/Users/yttt2/Documents/project1/assets/backup/Flame-1.png",
+      "folder": ""
+    },
+    {
+      "name": "Fuel Bottle-1.png",
+      "path": "C:/Users/yttt2/Documents/project1/assets/backup/Fuel Bottle-1.png",
+      "folder": ""
+    },
+    {
+      "name": "Hourglass-1.png",
+      "path": "C:/Users/yttt2/Documents/project1/assets/backup/Hourglass-1.png",
+      "folder": ""
+    },
+    {
+      "name": "Rock.png",
+      "path": "C:/Users/yttt2/Documents/project1/assets/backup/Rock.png",
+      "folder": ""
+    },
+    {
+      "name": "comets-1.png",
+      "path": "C:/Users/yttt2/Documents/project1/assets/backup/comets-1.png",
+      "folder": ""
+    }
+  ],
+  "folders": [
+    "C:/Users/yttt2/Documents/project1/assets/backup/dino"
+  ],
+  "packOptions": {
+    "textureName": "texture",
+    "textureFormat": "png",
+    "removeFileExtension": false,
+    "prependFolderName": true,
+    "base64Export": false,
+    "tinify": false,
+    "tinifyKey": "",
+    "scale": 1,
+    "disableSmoothing": false,
+    "filter": "none",
+    "exporter": "JSON (hash)",
+    "fileName": "pack-result",
+    "savePath": "",
+    "width": 2048,
+    "height": 2048,
+    "fixedSize": false,
+    "powerOfTwo": false,
+    "padding": 0,
+    "extrude": 0,
+    "allowRotation": false,
+    "allowTrim": true,
+    "trimMode": "trim",
+    "alphaThreshold": "0",
+    "detectIdentical": true,
+    "packer": "MaxRectsBin",
+    "packerMethod": "BestShortSideFit"
+  }
+}
