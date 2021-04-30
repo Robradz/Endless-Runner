@@ -42,6 +42,7 @@ class Play extends Phaser.Scene {
     create() {
 
         this.sound.stopAll();
+        this.isSlowMo = false;
         this.comets = [];
         this.cometTrails = [];
         this.dino = null;
@@ -163,6 +164,13 @@ class Play extends Phaser.Scene {
             'atlas',
             'Fuel Bottle-1.png'
         );
+        this.timerPickup = new HourGlass (
+            this,
+            game.config.width + 50,
+            Math.random() * game.config.height,
+            'atlas',
+            'Hourglass-1.png'
+        );
     }
 
     createComet() {
@@ -190,7 +198,7 @@ class Play extends Phaser.Scene {
         console.log(this.comets.length);
     }
 
-    update() {
+    update(time, delta) {
         if (!this.comets[0].isPlaying) {
             this.add.text(game.config.width/2, game.config.height/2, 
                 'GAME OVER', this.scoreConfig).setOrigin(0.5);
@@ -214,9 +222,14 @@ class Play extends Phaser.Scene {
                 this.bonusTime += 5;
                 this.fuelPickup.reset();
             }
+            if (this.checkCollision(this.timerPickup)) {
+                this.isSlowMo = true;
+                this.timerPickup.reset();
+            }
 
             this.dino.update();
             this.fuelPickup.update();
+            this.timerPickup.update();
 
             this.cometTimer(this.timer.getElapsedSeconds());
 
