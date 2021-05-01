@@ -37,6 +37,8 @@ class Play extends Phaser.Scene {
         this.load.audio('brake', './assets/brake.wav');
         this.load.audio('falldown', './assets/falldown.wav');
         this.load.audio('theme', './assets/dinotheme.wav');
+        this.load.audio('powerup', './assets/powerup.wav');
+        this.load.audio('slowdown', './assets/slowdown.wav');
     }
 
     create() {
@@ -74,6 +76,8 @@ class Play extends Phaser.Scene {
 
         this.sfxDied = this.sound.add('falldown', {volume: 0.1});
         this.bgm = this.sound.add('theme',{volume: 1, loop:true});
+        this.sfxFuel = this.sound.add('powerup', {volume: 0.8});
+        this.sfxClock = this.sound.add('slowdown', {volume: 0.8});
         this.bgm.play();
 
         this.dino = new Dino(
@@ -198,6 +202,14 @@ class Play extends Phaser.Scene {
     }
 
     update(time, delta) {
+        if(this.isSlowMo) {
+            var then = performance.now();
+            while ((performance.now() - then) < 40) {
+                this.timePlayed.text = this.timer.getElapsedSeconds() + this.bonusTime;
+            }
+        }else{
+            this.timerPickup.update();
+        }
         if (!this.comets[0].isPlaying) {
             this.add.text(game.config.width/2, game.config.height/2, 
                 'GAME OVER', this.scoreConfig).setOrigin(0.5);
@@ -219,17 +231,23 @@ class Play extends Phaser.Scene {
 
             if (this.checkCollision(this.fuelPickup)) {
                 this.bonusTime += 5;
+                this.sfxFuel.play();
                 this.fuelPickup.reset();
             }
             if (this.checkCollision(this.timerPickup)) {
                 this.isSlowMo = true;
+                this.bgm.stop();
                 this.timerPickup.reset();
+                this.sfxClock.play();
+                this.slowmoTimer = this.time.delayedCall(8000, () => {
+                    this.isSlowMo = false;
+                    this.bgm.play();
+                  }, null, this);
             }
 
             this.dino.update();
             this.fuelPickup.update();
-            this.timerPickup.update();
-
+            
             this.cometTimer(this.timer.getElapsedSeconds());
 
             this.background0.tilePositionX += 0.3;
