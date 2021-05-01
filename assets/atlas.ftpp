@@ -6,32 +6,32 @@
   "images": [
     {
       "name": "Flame-1.png",
-      "path": "C:/Users/yttt2/Documents/project1/assets/backup/Flame-1.png",
+      "path": "./backup/Flame-1.png",
       "folder": ""
     },
     {
       "name": "Fuel Bottle-1.png",
-      "path": "C:/Users/yttt2/Documents/project1/assets/backup/Fuel Bottle-1.png",
+      "path": "./backup/Fuel Bottle-1.png",
       "folder": ""
     },
     {
       "name": "Hourglass-1.png",
-      "path": "C:/Users/yttt2/Documents/project1/assets/backup/Hourglass-1.png",
+      "path": "./backup/Hourglass-1.png",
       "folder": ""
     },
     {
       "name": "Rock.png",
-      "path": "C:/Users/yttt2/Documents/project1/assets/backup/Rock.png",
+      "path": "./backup/Rock.png",
       "folder": ""
     },
     {
       "name": "comets-1.png",
-      "path": "C:/Users/yttt2/Documents/project1/assets/backup/comets-1.png",
+      "path": "./backup/comets-1.png",
       "folder": ""
     }
   ],
   "folders": [
-    "C:/Users/yttt2/Documents/project1/assets/backup/dino"
+    "./backup/dino"
   ],
   "packOptions": {
     "textureName": "texture",
