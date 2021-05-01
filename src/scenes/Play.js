@@ -231,6 +231,8 @@ class Play extends Phaser.Scene {
                 this.cometTrails[c].update();
                 if(this.checkCollision(this.comets[c])) {
                     this.boom = this.add.sprite(this.comets[c].x, this.comets[c].y, 'explosion/explosion_1.png');
+                    this.comets[c].destroy();
+                    this.cometTrails[c].destroy();
                     this.gameOver();
                 }
             }
