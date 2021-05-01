@@ -87,6 +87,8 @@ class Play extends Phaser.Scene {
             'atlas',
             "dino/trex_idle_1.png"
         );
+        this.animBoom = this.anims.generateFrameNames('atlas', { start: 1, end: 8, prefix:'explosion/explosion_', suffix:'.png' });
+        this.anims.create({ key: 'boom', frames: this.animBoom, frameRate: 25, repeat: 0 });
         this.dino.animUp = this.anims.generateFrameNames('atlas', { start: 1, end: 3, prefix:'dino/trex_up_', suffix:'.png' });
         this.dino.animDown = this.anims.generateFrameNames('atlas', { start: 1, end: 3, prefix:'dino/trex_down_', suffix:'.png' });
         this.dino.animForward = this.anims.generateFrameNames('atlas', { start: 1, end: 3, prefix:'dino/trex_forward_', suffix:'.png' });
@@ -98,6 +100,7 @@ class Play extends Phaser.Scene {
         this.dino.anims.create({ key: 'right', frames: this.dino.animForward, frameRate: 10, repeat: -1 });
         this.dino.anims.create({ key: 'idle', frames: this.dino.animIdle, frameRate: 10, repeat: -1 });
         this.dino.anims.play('idle');
+
         this.scoreConfig = {
             fontFamily: 'stoneAge',
             fontSize: '28px',
@@ -208,7 +211,9 @@ class Play extends Phaser.Scene {
                 this.timePlayed.text = this.timer.getElapsedSeconds() + this.bonusTime;
             }
         }else{
-            this.timerPickup.update();
+            if (this.comets[0].isPlaying) {
+                this.timerPickup.update();
+            }
         }
         if (!this.comets[0].isPlaying) {
             this.add.text(game.config.width/2, game.config.height/2, 
@@ -225,6 +230,7 @@ class Play extends Phaser.Scene {
                 this.comets[c].update();
                 this.cometTrails[c].update();
                 if(this.checkCollision(this.comets[c])) {
+                    this.boom = this.add.sprite(this.comets[c].x, this.comets[c].y, 'explosion/explosion_1.png');
                     this.gameOver();
                 }
             }
@@ -267,7 +273,11 @@ class Play extends Phaser.Scene {
         if (this.timer.getElapsedSeconds() + this.bonusTime > this.highScore) {
             this.highScore = this.timer.getElapsedSeconds() + this.bonusTime;
         }
-        this.dino.movementSpeed = 0;
+        this.dino.angle = -90;
+        this.boom.anims.play('boom');
+        this.boom.on('animationcomplete', () => {
+            this.boom.destroy();
+          });
         this.sound.stopAll();
         this.sfxDied.play();
         for(let c = 0; c < this.comets.length; c++) {
