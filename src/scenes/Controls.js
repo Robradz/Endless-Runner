@@ -27,7 +27,7 @@ class Controls extends Phaser.Scene {
         // Temporary Menu
         //Show Menu Text
         this.add.text(game.config.width/2, game.config.height/2 - 150, 
-            'Use WASD or Arrow Keys to move', menuConfig).setOrigin(0.5);
+            'Use WASD or Arrow Keys to move/Press Space to brake', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width / 2, game.config.height / 2 - 100, 
             'Press SPACE to restart when dead', menuConfig).setOrigin(0.5);
         this.add.text(game.config.width / 2, game.config.height / 2- 50, 
