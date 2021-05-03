@@ -4,55 +4,76 @@
 			"image": "atlas.png",
 			"format": "RGBA8888",
 			"size": {
-				"w": 497,
-				"h": 138
+				"w": 187,
+				"h": 623
 			},
 			"scale": 1,
 			"frames": [
 				{
-					"filename": "dino/trex_forward_1.png",
+					"filename": "explosion/explosion_6.png",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
 						"w": 64,
 						"h": 64
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 8,
+						"y": 0,
 						"w": 64,
-						"h": 53
+						"h": 64
 					},
 					"frame": {
 						"x": 0,
 						"y": 0,
 						"w": 64,
-						"h": 53
+						"h": 64
 					}
 				},
 				{
-					"filename": "dino/trex_forward_2.png",
+					"filename": "explosion/explosion_7.png",
 					"rotated": false,
-					"trimmed": true,
+					"trimmed": false,
 					"sourceSize": {
 						"w": 64,
 						"h": 64
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 9,
-						"w": 64,
-						"h": 52
-					},
-					"frame": {
-						"x": 64,
 						"y": 0,
 						"w": 64,
-						"h": 52
+						"h": 64
+					},
+					"frame": {
+						"x": 0,
+						"y": 64,
+						"w": 64,
+						"h": 64
 					}
 				},
 				{
-					"filename": "dino/trex_forward_3.png",
+					"filename": "explosion/explosion_8.png",
+					"rotated": false,
+					"trimmed": false,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 0,
+						"w": 64,
+						"h": 64
+					},
+					"frame": {
+						"x": 0,
+						"y": 128,
+						"w": 64,
+						"h": 64
+					}
+				},
+				{
+					"filename": "explosion/explosion_5.png",
 					"rotated": false,
 					"trimmed": true,
 					"sourceSize": {
@@ -61,15 +82,15 @@
 					},
 					"spriteSourceSize": {
 						"x": 0,
-						"y": 9,
-						"w": 64,
-						"h": 52
+						"y": 0,
+						"w": 60,
+						"h": 64
 					},
 					"frame": {
-						"x": 128,
-						"y": 0,
-						"w": 64,
-						"h": 52
+						"x": 0,
+						"y": 192,
+						"w": 60,
+						"h": 64
 					}
 				},
 				{
@@ -87,8 +108,29 @@
 						"h": 62
 					},
 					"frame": {
-						"x": 192,
-						"y": 0,
+						"x": 0,
+						"y": 256,
+						"w": 59,
+						"h": 62
+					}
+				},
+				{
+					"filename": "dino/trex_idle_3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 2,
+						"y": 2,
+						"w": 59,
+						"h": 62
+					},
+					"frame": {
+						"x": 0,
+						"y": 318,
 						"w": 59,
 						"h": 62
 					}
@@ -108,9 +150,51 @@
 						"h": 61
 					},
 					"frame": {
-						"x": 64,
-						"y": 52,
+						"x": 0,
+						"y": 380,
 						"w": 59,
+						"h": 61
+					}
+				},
+				{
+					"filename": "dino/trex_up_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 7,
+						"y": 3,
+						"w": 53,
+						"h": 61
+					},
+					"frame": {
+						"x": 0,
+						"y": 441,
+						"w": 53,
+						"h": 61
+					}
+				},
+				{
+					"filename": "Fuel Bottle-1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 25,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 2,
+						"w": 17,
+						"h": 61
+					},
+					"frame": {
+						"x": 0,
+						"y": 502,
+						"w": 17,
 						"h": 61
 					}
 				},
@@ -130,51 +214,9 @@
 					},
 					"frame": {
 						"x": 0,
-						"y": 53,
+						"y": 563,
 						"w": 56,
 						"h": 60
-					}
-				},
-				{
-					"filename": "Rock.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 29,
-						"y": 29,
-						"w": 8,
-						"h": 8
-					},
-					"frame": {
-						"x": 56,
-						"y": 53,
-						"w": 8,
-						"h": 8
-					}
-				},
-				{
-					"filename": "dino/trex_up_1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 7,
-						"y": 3,
-						"w": 53,
-						"h": 61
-					},
-					"frame": {
-						"x": 123,
-						"y": 52,
-						"w": 53,
-						"h": 61
 					}
 				},
 				{
@@ -192,73 +234,10 @@
 						"h": 60
 					},
 					"frame": {
-						"x": 251,
-						"y": 0,
+						"x": 17,
+						"y": 502,
 						"w": 53,
 						"h": 60
-					}
-				},
-				{
-					"filename": "dino/trex_down_1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 5,
-						"w": 51,
-						"h": 55
-					},
-					"frame": {
-						"x": 304,
-						"y": 0,
-						"w": 51,
-						"h": 55
-					}
-				},
-				{
-					"filename": "dino/trex_down_2.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 6,
-						"w": 51,
-						"h": 55
-					},
-					"frame": {
-						"x": 355,
-						"y": 0,
-						"w": 51,
-						"h": 55
-					}
-				},
-				{
-					"filename": "dino/trex_down_3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 6,
-						"w": 51,
-						"h": 55
-					},
-					"frame": {
-						"x": 406,
-						"y": 0,
-						"w": 51,
-						"h": 55
 					}
 				},
 				{
@@ -276,8 +255,8 @@
 						"h": 58
 					},
 					"frame": {
-						"x": 457,
-						"y": 0,
+						"x": 53,
+						"y": 441,
 						"w": 40,
 						"h": 58
 					}
@@ -297,8 +276,8 @@
 						"h": 58
 					},
 					"frame": {
-						"x": 304,
-						"y": 55,
+						"x": 93,
+						"y": 441,
 						"w": 40,
 						"h": 58
 					}
@@ -318,10 +297,115 @@
 						"h": 56
 					},
 					"frame": {
-						"x": 251,
-						"y": 60,
+						"x": 59,
+						"y": 256,
 						"w": 40,
 						"h": 56
+					}
+				},
+				{
+					"filename": "dino/trex_down_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 5,
+						"w": 51,
+						"h": 55
+					},
+					"frame": {
+						"x": 60,
+						"y": 192,
+						"w": 51,
+						"h": 55
+					}
+				},
+				{
+					"filename": "Rock.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 29,
+						"y": 29,
+						"w": 8,
+						"h": 8
+					},
+					"frame": {
+						"x": 60,
+						"y": 247,
+						"w": 8,
+						"h": 8
+					}
+				},
+				{
+					"filename": "dino/trex_down_2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 6,
+						"w": 51,
+						"h": 55
+					},
+					"frame": {
+						"x": 59,
+						"y": 312,
+						"w": 51,
+						"h": 55
+					}
+				},
+				{
+					"filename": "dino/trex_down_3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 4,
+						"y": 6,
+						"w": 51,
+						"h": 55
+					},
+					"frame": {
+						"x": 99,
+						"y": 247,
+						"w": 51,
+						"h": 55
+					}
+				},
+				{
+					"filename": "dino/trex_forward_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 8,
+						"w": 64,
+						"h": 53
+					},
+					"frame": {
+						"x": 59,
+						"y": 367,
+						"w": 64,
+						"h": 53
 					}
 				},
 				{
@@ -339,10 +423,94 @@
 						"h": 15
 					},
 					"frame": {
-						"x": 176,
-						"y": 62,
+						"x": 59,
+						"y": 420,
 						"w": 37,
 						"h": 15
+					}
+				},
+				{
+					"filename": "dino/trex_forward_2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 9,
+						"w": 64,
+						"h": 52
+					},
+					"frame": {
+						"x": 110,
+						"y": 302,
+						"w": 64,
+						"h": 52
+					}
+				},
+				{
+					"filename": "dino/trex_forward_3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 9,
+						"w": 64,
+						"h": 52
+					},
+					"frame": {
+						"x": 123,
+						"y": 354,
+						"w": 64,
+						"h": 52
+					}
+				},
+				{
+					"filename": "explosion/explosion_3.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 11,
+						"y": 12,
+						"w": 34,
+						"h": 35
+					},
+					"frame": {
+						"x": 123,
+						"y": 406,
+						"w": 34,
+						"h": 35
+					}
+				},
+				{
+					"filename": "explosion/explosion_4.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 6,
+						"y": 2,
+						"w": 46,
+						"h": 51
+					},
+					"frame": {
+						"x": 64,
+						"y": 0,
+						"w": 46,
+						"h": 51
 					}
 				},
 				{
@@ -360,10 +528,52 @@
 						"h": 43
 					},
 					"frame": {
-						"x": 213,
-						"y": 62,
+						"x": 64,
+						"y": 51,
 						"w": 27,
 						"h": 43
+					}
+				},
+				{
+					"filename": "explosion/explosion_2.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 15,
+						"y": 12,
+						"w": 29,
+						"h": 33
+					},
+					"frame": {
+						"x": 64,
+						"y": 94,
+						"w": 29,
+						"h": 33
+					}
+				},
+				{
+					"filename": "explosion/explosion_1.png",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 64,
+						"h": 64
+					},
+					"spriteSourceSize": {
+						"x": 16,
+						"y": 13,
+						"w": 27,
+						"h": 31
+					},
+					"frame": {
+						"x": 91,
+						"y": 51,
+						"w": 27,
+						"h": 31
 					}
 				},
 				{
@@ -381,52 +591,10 @@
 						"h": 28
 					},
 					"frame": {
-						"x": 176,
-						"y": 77,
+						"x": 110,
+						"y": 0,
 						"w": 18,
 						"h": 28
-					}
-				},
-				{
-					"filename": "Fuel Bottle-1.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 25,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 4,
-						"y": 2,
-						"w": 17,
-						"h": 61
-					},
-					"frame": {
-						"x": 194,
-						"y": 77,
-						"w": 17,
-						"h": 61
-					}
-				},
-				{
-					"filename": "dino/trex_idle_3.png",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 64,
-						"h": 64
-					},
-					"spriteSourceSize": {
-						"x": 2,
-						"y": 2,
-						"w": 59,
-						"h": 62
-					},
-					"frame": {
-						"x": 192,
-						"y": 0,
-						"w": 59,
-						"h": 62
 					}
 				}
 			]
@@ -434,6 +602,6 @@
 	],
 	"meta": {
 		"app": "http://free-tex-packer.com",
-		"version": "0.6.6"
+		"version": "0.6.7"
 	}
 }

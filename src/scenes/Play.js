@@ -37,11 +37,14 @@ class Play extends Phaser.Scene {
         this.load.audio('brake', './assets/brake.wav');
         this.load.audio('falldown', './assets/falldown.wav');
         this.load.audio('theme', './assets/dinotheme.wav');
+        this.load.audio('powerup', './assets/powerup.wav');
+        this.load.audio('slowdown', './assets/slowdown.wav');
     }
 
     create() {
 
         this.sound.stopAll();
+        this.isSlowMo = false;
         this.comets = [];
         this.cometTrails = [];
         this.dino = null;
@@ -73,6 +76,8 @@ class Play extends Phaser.Scene {
 
         this.sfxDied = this.sound.add('falldown', {volume: 0.1});
         this.bgm = this.sound.add('theme',{volume: 1, loop:true});
+        this.sfxFuel = this.sound.add('powerup', {volume: 0.8});
+        this.sfxClock = this.sound.add('slowdown', {volume: 0.8});
         this.bgm.play();
 
         this.dino = new Dino(
@@ -82,6 +87,8 @@ class Play extends Phaser.Scene {
             'atlas',
             "dino/trex_idle_1.png"
         );
+        this.animBoom = this.anims.generateFrameNames('atlas', { start: 1, end: 8, prefix:'explosion/explosion_', suffix:'.png' });
+        this.anims.create({ key: 'boom', frames: this.animBoom, frameRate: 25, repeat: 0 });
         this.dino.animUp = this.anims.generateFrameNames('atlas', { start: 1, end: 3, prefix:'dino/trex_up_', suffix:'.png' });
         this.dino.animDown = this.anims.generateFrameNames('atlas', { start: 1, end: 3, prefix:'dino/trex_down_', suffix:'.png' });
         this.dino.animForward = this.anims.generateFrameNames('atlas', { start: 1, end: 3, prefix:'dino/trex_forward_', suffix:'.png' });
@@ -93,6 +100,7 @@ class Play extends Phaser.Scene {
         this.dino.anims.create({ key: 'right', frames: this.dino.animForward, frameRate: 10, repeat: -1 });
         this.dino.anims.create({ key: 'idle', frames: this.dino.animIdle, frameRate: 10, repeat: -1 });
         this.dino.anims.play('idle');
+
         this.scoreConfig = {
             fontFamily: 'stoneAge',
             fontSize: '28px',
@@ -162,6 +170,13 @@ class Play extends Phaser.Scene {
             'atlas',
             'Fuel Bottle-1.png'
         );
+        this.timerPickup = new HourGlass (
+            this,
+            game.config.width + 50,
+            Math.random() * game.config.height,
+            'atlas',
+            'Hourglass-1.png'
+        );
     }
 
     createComet() {
@@ -189,7 +204,17 @@ class Play extends Phaser.Scene {
         console.log(this.comets.length);
     }
 
-    update() {
+    update(time, delta) {
+        if(this.isSlowMo) {
+            var then = performance.now();
+            while ((performance.now() - then) < 40) {
+                this.timePlayed.text = this.timer.getElapsedSeconds() + this.bonusTime;
+            }
+        }else{
+            if (this.comets[0].isPlaying) {
+                this.timerPickup.update();
+            }
+        }
         if (!this.comets[0].isPlaying) {
             this.add.text(game.config.width/2, game.config.height/2, 
                 'GAME OVER', this.scoreConfig).setOrigin(0.5);
@@ -205,18 +230,32 @@ class Play extends Phaser.Scene {
                 this.comets[c].update();
                 this.cometTrails[c].update();
                 if(this.checkCollision(this.comets[c])) {
+                    this.boom = this.add.sprite(this.comets[c].x, this.comets[c].y, 'explosion/explosion_1.png');
+                    this.comets[c].destroy();
+                    this.cometTrails[c].destroy();
                     this.gameOver();
                 }
             }
 
             if (this.checkCollision(this.fuelPickup)) {
                 this.bonusTime += 5;
+                this.sfxFuel.play();
                 this.fuelPickup.reset();
+            }
+            if (this.checkCollision(this.timerPickup)) {
+                this.isSlowMo = true;
+                this.bgm.stop();
+                this.timerPickup.reset();
+                this.sfxClock.play();
+                this.slowmoTimer = this.time.delayedCall(8000, () => {
+                    this.isSlowMo = false;
+                    this.bgm.play();
+                  }, null, this);
             }
 
             this.dino.update();
             this.fuelPickup.update();
-
+            
             this.cometTimer(this.timer.getElapsedSeconds());
 
             this.background0.tilePositionX += 0.3;
@@ -236,7 +275,11 @@ class Play extends Phaser.Scene {
         if (this.timer.getElapsedSeconds() + this.bonusTime > this.highScore) {
             this.highScore = this.timer.getElapsedSeconds() + this.bonusTime;
         }
-        this.dino.movementSpeed = 0;
+        this.dino.angle = -90;
+        this.boom.anims.play('boom');
+        this.boom.on('animationcomplete', () => {
+            this.boom.destroy();
+          });
         this.sound.stopAll();
         this.sfxDied.play();
         for(let c = 0; c < this.comets.length; c++) {
