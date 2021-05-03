@@ -221,6 +221,8 @@ class Play extends Phaser.Scene {
                 'GAME OVER', this.scoreConfig).setOrigin(0.5);
             this.add.text(game.config.width/2, game.config.height/2 + 64, 
                 'Press SPACE to Restart', this.scoreConfig).setOrigin(0.5);
+            this.dino.y += 2 * this.dino.movementSpeed;
+            this.dino.checkBoundaries();
             if (Phaser.Input.Keyboard.JustDown(keySPACE)) {
                 console.log("Pressed space");
                 this.scene.restart();
@@ -276,6 +278,7 @@ class Play extends Phaser.Scene {
         if (this.timer.getElapsedSeconds() + this.bonusTime > this.highScore) {
             this.highScore = this.timer.getElapsedSeconds() + this.bonusTime;
         }
+        this.dino.anims.play('down');
         this.dino.angle = -90;
         this.boom.anims.play('boom');
         this.boom.on('animationcomplete', () => {
