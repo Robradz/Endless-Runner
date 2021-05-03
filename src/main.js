@@ -22,6 +22,7 @@
 //      one with interesting plants, big volcanos, and other dinosaurs.
 //    - The background artist has never made pixel art before or endless 
 //      tiles. We think it turned out great and visually interesting
+//
 // Music&SFX:
 //    - The team is proud of using 100% original background music and SFX.
 //    - 8-bit style background music, retro and clean.
