@@ -20,9 +20,8 @@
 // Visual Style:
 //    - The team is really proud of the world that we were able to create,
 //      one with interesting plants, big volcanos, and other dinosaurs.
-//    - One visually interesting thing we added for extra style is the 
-//      death animation. Before the death animation, it was pretty jarring
-//      for everything to just suddenly stop.
+//    - The background artist has never made pixel art before or endless 
+//      tiles. We think it turned out great and visually interesting
 
 "use strict";
 let config = {
