@@ -209,7 +209,11 @@ class Play extends Phaser.Scene {
         if(this.isSlowMo) {
             var then = performance.now();
             while ((performance.now() - then) < 40) {
-                this.timePlayed.text = this.timer.getElapsedSeconds() + this.bonusTime;
+                if (this.comets[0].isPlaying) {
+                    this.timePlayed.text = this.timer.getElapsedSeconds() + this.bonusTime;
+                }  else{
+                    this.isSlowMo = false;
+                }
             }
         }else{
             if (this.comets[0].isPlaying) {
@@ -252,7 +256,9 @@ class Play extends Phaser.Scene {
                 this.sfxClock.play();
                 this.slowmoTimer = this.time.delayedCall(8000, () => {
                     this.isSlowMo = false;
-                    this.bgm.play();
+                    if (this.comets[0].isPlaying) {
+                        this.bgm.play();
+                    }     
                   }, null, this);
             }
 
