@@ -17,7 +17,7 @@ class Menu extends Phaser.Scene {
         this.background = this.add.tileSprite(0,0,640,480,'menu_back').setOrigin(0,0);
         this.bgm = this.sound.add('menu',{volume: 1,loop:true});
         this.bgm.play();
-        // display score
+        
         let menuConfig = {
             fontFamily: 'stoneAge',
             fontSize: '28px',
