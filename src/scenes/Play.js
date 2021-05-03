@@ -104,6 +104,7 @@ class Play extends Phaser.Scene {
         this.scoreConfig = {
             fontFamily: 'stoneAge',
             fontSize: '28px',
+            bold: true,
             color: '#FFFFFF',
             align: 'center',
             padding: {
